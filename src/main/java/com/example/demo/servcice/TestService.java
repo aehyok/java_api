@@ -19,4 +19,9 @@ public class TestService {
     public List<TestModel> getModelById(int id) {
         return testMapper.getById(id);
     }
+
+    public void operation(int id,String name){
+        //testMapper.delete(1);
+        testMapper.insert(2,"2");
+    }
 }
