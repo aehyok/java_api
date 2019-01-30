@@ -21,7 +21,7 @@ public class TestService {
     }
 
     public void operation(int id,String name){
-        testMapper.delete(1);
-        testMapper.insert(id,name);
+        //testMapper.delete(1);
+        testMapper.insert(2,"2");
     }
 }
