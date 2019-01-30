@@ -12,7 +12,7 @@ public class TestService {
     @Autowired
     private TestMapper testMapper;
 
-    public List<TestModel> getllAll(){
+    public List<TestModel> getAll(){
         return testMapper.getAll();
     }
 
