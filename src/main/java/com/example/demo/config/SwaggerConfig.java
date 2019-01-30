@@ -25,6 +25,7 @@ public class SwaggerConfig {
                 .apiInfo(applicationInfo());//用来创建该Api的基本信息(这些基本信息会展现在文档页面中)
     }
 
+    //测试
     private ApiInfo applicationInfo() {
         ApiInfo apiInfo = new ApiInfo("aehyok Api接口管理",//大标题
                 "api接口可视化管理" ,//小标题
