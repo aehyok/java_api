@@ -31,7 +31,5 @@ public class AopConfig {
         }catch (Throwable e){
             throw e;
         }
-
-
     }
 }

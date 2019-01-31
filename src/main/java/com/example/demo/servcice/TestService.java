@@ -11,7 +11,7 @@ import java.util.List;
 public class TestService {
     @Autowired
     private TestMapper testMapper;
-
+    //测试热部署
     public List<TestModel> getAll(){
         return testMapper.getAll();
     }

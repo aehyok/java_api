@@ -22,7 +22,6 @@ public class TestController {
     //@RequestMapping(value="/get",method= RequestMethod.GET)  与下面写法一致  @GetMapping(value = "/get")
     @GetMapping(value = "/get")
     public List<TestModel> get(){
-
         return testService.getAll();
     }
 
