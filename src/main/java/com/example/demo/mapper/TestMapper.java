@@ -15,6 +15,7 @@ import java.util.List;
 public interface TestMapper {
     @Select("select * from tests")
     List<TestModel> getAll();
+    
     @Select("select * from tests where ID = #{id}")
     List<TestModel> getById(int id);
 
