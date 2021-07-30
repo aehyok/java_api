@@ -12,7 +12,7 @@
     <artifactId>demo</artifactId>
     <version>0.0.1</version>
     <name>aehyok</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>  <!--打包类型-->
     <description>Demo project for Spring Boot</description>
 
     <properties>

@@ -4,6 +4,7 @@ import com.example.demo.mapper.TestMapper;
 import com.example.demo.model.TestModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,8 +21,12 @@ public class TestService {
         return testMapper.getById(id);
     }
 
+    // TODO Mysql中的事务问题处理
+    @Transactional(rollbackFor=Exception.class)
     public void operation(int id,String name){
-        //testMapper.delete(1);
-        testMapper.insert(2,"2");
+        testMapper.insert(id,name);
+
+        testMapper.delete(3);
+        new Exception("ssssssssssss");
     }
 }

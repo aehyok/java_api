@@ -34,13 +34,10 @@ public class TestController {
         return testService.getModelById(id);
     }
 
-
     @ApiOperation(value = "事务测试" , httpMethod ="GET", notes = "事务测试")
     @ApiImplicitParams(@ApiImplicitParam(  name = "id",value = "用户ID",required = true,dataType = "int",paramType = "query"))
     @ApiResponse(response=TestModel.class, code = 200,  message = "接口返回对象参数")
     @ResponseBody
     @RequestMapping(value="/operation",method= RequestMethod.GET)
-    public  void operation(int id,String name) {
-        testService.operation(id,name);
-    }
+    public  void operation(int id,String name) { testService.operation(id,name);}
 }
