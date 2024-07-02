@@ -1,8 +1,10 @@
 package com.sun.xxm.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@Data
 @Entity
 @Table(name="Test")
 public class Test {
@@ -23,7 +25,7 @@ public class Test {
     }
 
     @Id
-    @Column(name="Id")
+    @Column(name="Id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 

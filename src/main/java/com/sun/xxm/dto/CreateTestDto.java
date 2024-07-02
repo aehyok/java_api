@@ -2,9 +2,9 @@ package com.sun.xxm.dto;
 
 import lombok.Data;
 
-public class TestDto {
-    public long Id;
-
+@Data
+public class CreateTestDto
+{
     public String getName() {
         return Name;
     }
@@ -13,14 +13,5 @@ public class TestDto {
         Name = name;
     }
 
-    public long getId() {
-        return Id;
-    }
-
-    public void setId(long id) {
-        Id = id;
-    }
-
     public String Name;
 }
-
