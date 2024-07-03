@@ -1,9 +1,8 @@
-package com.sun.xxm.mapper;
+package com.sun.xxm.mapper.Test;
 
 import com.sun.xxm.dto.CreateTestDto;
 import com.sun.xxm.model.Test;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 @Mapper

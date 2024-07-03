@@ -2,9 +2,8 @@ package com.sun.xxm.service;
 
 import com.sun.xxm.dao.TestRepository;
 import com.sun.xxm.dto.TestDto;
-import com.sun.xxm.mapper.TestMapperToDto;
+import com.sun.xxm.mapper.Test.TestMapperToDto;
 import com.sun.xxm.model.Test;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

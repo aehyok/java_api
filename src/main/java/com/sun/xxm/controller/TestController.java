@@ -2,8 +2,7 @@ package com.sun.xxm.controller;
 
 import com.sun.xxm.dto.CreateTestDto;
 import com.sun.xxm.dto.TestDto;
-import com.sun.xxm.mapper.CreateTestMapperToEntity;
-import com.sun.xxm.mapper.TestMapperToEntity;
+import com.sun.xxm.mapper.Test.CreateTestMapperToEntity;
 import com.sun.xxm.model.Test;
 import com.sun.xxm.service.ITestService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,4 +1,4 @@
-package com.sun.xxm.mapper;
+package com.sun.xxm.mapper.Test;
 
 import com.sun.xxm.dto.TestDto;
 import com.sun.xxm.model.Test;
