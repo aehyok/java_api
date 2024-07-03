@@ -18,7 +18,6 @@ public class TestService implements ITestService {
 
     @Override
     public Test getTestById(long id) {
-        var test = testRepository.findById(id);
         return testRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 

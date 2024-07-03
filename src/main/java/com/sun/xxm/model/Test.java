@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Data
 @Entity
-@Table(name="Test")
 public class Test {
     public long getId() {
         return Id;
