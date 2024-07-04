@@ -20,4 +20,6 @@ public class ApiException  extends  RuntimeException{
         this.Code = resultCodeEnum.getCode();
         this.Message = message;
     }
+
+    public ApiException()
 }
