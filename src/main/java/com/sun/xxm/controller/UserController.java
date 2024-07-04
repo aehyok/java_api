@@ -33,6 +33,6 @@ public class UserController {
         queryWrapper.eq("user_name", model.getUserName());
         queryWrapper.eq("password", model.getPassword());
         var list = userMapper.selectOne(queryWrapper);
-        return user != null;
+        return list != null;
     }
 }
