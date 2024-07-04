@@ -1,6 +1,7 @@
 package com.sun.xxm.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import jakarta.persistence.*;
@@ -23,9 +24,9 @@ public class User {
     @TableId(type = IdType.AUTO)
     private Long id;
 
-    @Column(name="user_name")
+    @TableField(value="user_name")
     private String userName;
 
-    @Column(name="password")
+    @TableField(value="password")
     private String password;
 }

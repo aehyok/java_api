@@ -1,37 +1,49 @@
 package com.sun.xxm.model;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.*;
 
+import java.util.List;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Setter
 @Getter
-@Table(name = "dictionaryitem")
+@Setter
+@TableName(value="dictionaryitem")
 public class DictionaryItem {
-    @jakarta.persistence.Id
-    @Column(name="id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Id
+    @TableId(type = IdType.AUTO)
+    private Long id;
 
-    @Column(name="code")
+    @TableField(value="code")
     private String code;
 
-    @Column(name="name")
+    @TableField(value="name")
     private String name;
 
-    @Column(name="display_order")
+    @TableField(value="display_order")
     private int displayOrder;
 
-    @Column(name="parent_id")
-    private long parentId;
+    @TableField(value="parent_id")
+    private Long parentId;
 
-    @Column(name="big_picture")
+    @TableField(value="big_picture")
     private String bigPicture;
 
-    @Column(name="small_picture")
+    @TableField(value="small_picture")
     private String smallPicture;
 
-    @Column(name="is_deleted")
-    private boolean isDeleted = false;
+    @TableField(value="is_deleted")
+    private boolean isDeleted;
+
+//    @TableField(exist = false)
+//    private List<DictionaryItem> children;
 }
