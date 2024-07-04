@@ -21,7 +21,7 @@ public class ArticleController {
     @Autowired
     private ArticleMapper articleMapper;
 
-    @private DictionaryItemMapper dictionaryItemMapper;
+    private DictionaryItemMapper dictionaryItemMapper;
 
     @Operation(summary = "通过字典项code获取文章内容")
     @GetMapping("{code}")
@@ -51,7 +51,7 @@ public class ArticleController {
     }
 
     @Operation(summary = "修改文章")
-    @PostMapping()
+    @PutMapping()
     public Article putArticle(@RequestBody Article article) {
         if(article.getDictionaryCode().isEmpty())
         {

@@ -4,22 +4,16 @@ import lombok.Getter;
 
 @Getter
 public class ApiException  extends  RuntimeException{
-    private  int Code;
-    private String Message;
-
-    public ApiException(){
-        this(ResultCodeEnum.FAILED);
-    }
+    private  int code;
+    private String message;
 
     public ApiException(ResultCodeEnum resultCodeEnum){
-        this.Code = resultCodeEnum.getCode();
-        this.Message = resultCodeEnum.getMessage();
+        this.code = resultCodeEnum.getCode();
+        this.message = resultCodeEnum.getMessage();
     }
 
     public ApiException(ResultCodeEnum resultCodeEnum, String message){
-        this.Code = resultCodeEnum.getCode();
-        this.Message = message;
+        this.code = resultCodeEnum.getCode();
+        this.message = message;
     }
-
-    public ApiException()
 }

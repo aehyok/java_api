@@ -3,6 +3,7 @@ package com.sun.xxm.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.xxm.utils.ApiException;
+import com.sun.xxm.utils.ResultCodeEnum;
 import com.sun.xxm.utils.ResultModel;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -29,7 +30,7 @@ public class BaseControllerAdvice implements ResponseBodyAdvice {
                 return objectMapper.writeValueAsString(new ResultModel<>(body));
             } catch (JsonProcessingException e)
             {
-                throw new ApiException();
+                throw new ApiException(ResultCodeEnum.FAILED);
             }
         }
 

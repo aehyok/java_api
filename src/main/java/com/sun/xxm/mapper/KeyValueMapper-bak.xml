@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.xxm.mapper.KeyValueMapper">
+    <select id="getKeyValuesAsync" resultType="com.sun.xxm.dto.KeyValueDto">
+        SELECT kv.id, kv.value, kc.label
+        FROM keyconfig kc
+        INNER JOIN keyvalue kv on kc.id = kv.key_config_id
+        WHERE kv.region_id = #{regionId}
+          AND kc.dictionary_code = #{code}
+        ORDER BY kc.display_order
+    </select>
+</mapper>
