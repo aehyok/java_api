@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dictionary")
-public class DictionaryItemController {
+public class DictionaryItemController extends BaseController {
 
     @Autowired
     private DictionaryItemMapper dictionaryItemMapper;
@@ -34,7 +34,6 @@ public class DictionaryItemController {
         return dictionaryItemMapper.selectList(queryWrapper);
     }
 
-
     @Operation(summary = "根据Code获取下级项目字典列表")
     @GetMapping("{code}")
     public List<DictionaryItemDto> getList(String code) {
@@ -47,23 +46,23 @@ public class DictionaryItemController {
             throw new ApiException(ResultCodeEnum.EMPTY);
         }
         else {
-            QueryWrapper<DictionaryItem> queryWrapper1 = new QueryWrapper<>();
-            queryWrapper1.eq("is_deleted", 0);
-            queryWrapper1.eq("parent_id", item.getId());
-            queryWrapper1.orderByAsc("display_order");
+            queryWrapper.clear();
+            queryWrapper.eq("is_deleted", 0);
+            queryWrapper.eq("parent_id", item.getId());
+            queryWrapper.orderByAsc("display_order");
 
-            var parentList =  dictionaryItemMapper.selectList(queryWrapper1);
+            var parentList =  dictionaryItemMapper.selectList(queryWrapper);
 
             var dtoList = DictionaryItemEntityToDtoMapper.instance.toDtos(parentList);
 
             dtoList.forEach(child -> {
                 System.out.println(child);
-                QueryWrapper<DictionaryItem> queryWrapper2 = new QueryWrapper<>();
-                queryWrapper2.eq("is_deleted", 0);
-                queryWrapper2.eq("parent_id", child.getId());
-                queryWrapper2.orderByAsc("display_order");
+                queryWrapper.clear();
+                queryWrapper.eq("is_deleted", 0);
+                queryWrapper.eq("parent_id", child.getId());
+                queryWrapper.orderByAsc("display_order");
 
-                var childList =  dictionaryItemMapper.selectList(queryWrapper2);
+                var childList =  dictionaryItemMapper.selectList(queryWrapper);
 
                 var dtoChildList = DictionaryItemEntityToDtoMapper.instance.toDtos(childList);
                 child.setChildren(dtoChildList);
