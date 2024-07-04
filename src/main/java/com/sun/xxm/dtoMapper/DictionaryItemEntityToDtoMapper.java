@@ -5,6 +5,8 @@ import com.sun.xxm.model.DictionaryItem;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface DictionaryItemEntityToDtoMapper {
 
@@ -12,5 +14,5 @@ public interface DictionaryItemEntityToDtoMapper {
 
     DictionaryItemDto toDto (DictionaryItem model);
 
-//    List<DictionaryItemDto> toDtos (List<DictionaryItem> model);
+    List<DictionaryItemDto> toDtos (List<DictionaryItem> model);
 }

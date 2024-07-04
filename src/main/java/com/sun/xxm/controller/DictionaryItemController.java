@@ -37,7 +37,7 @@ public class DictionaryItemController {
 
     @Operation(summary = "根据Code获取下级项目字典列表")
     @GetMapping("{code}")
-    public List<DictionaryItemDto> GetList(String code) {
+    public List<DictionaryItemDto> getList(String code) {
         QueryWrapper<DictionaryItem> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_deleted", 0);
         queryWrapper.eq("code", code);
@@ -54,14 +54,7 @@ public class DictionaryItemController {
 
             var parentList =  dictionaryItemMapper.selectList(queryWrapper1);
 
-            var dtoList = new ArrayList<DictionaryItemDto>();
-
-            parentList.forEach(parent -> {
-                var dto = DictionaryItemEntityToDtoMapper.instance.toDto(parent);
-                dtoList.add(dto);
-            });
-
-//            var dtoList = DictionaryItemEntityToDto.instance.toDtos(parentList);
+            var dtoList = DictionaryItemEntityToDtoMapper.instance.toDtos(parentList);
 
             dtoList.forEach(child -> {
                 System.out.println(child);
@@ -72,14 +65,8 @@ public class DictionaryItemController {
 
                 var childList =  dictionaryItemMapper.selectList(queryWrapper2);
 
-                var childDtoList = new ArrayList<DictionaryItemDto>();
-
-                childList.forEach(childItem -> {
-                    var dto = DictionaryItemEntityToDtoMapper.instance.toDto(childItem);
-                    childDtoList.add(dto);
-                });
-//                var dtoChildList = DictionaryItemEntityToDto.instance.toDtos(childList);
-                child.setChildren(childDtoList);
+                var dtoChildList = DictionaryItemEntityToDtoMapper.instance.toDtos(childList);
+                child.setChildren(dtoChildList);
             });
 
             return dtoList;
