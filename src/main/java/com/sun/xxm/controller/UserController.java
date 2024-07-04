@@ -1,8 +1,9 @@
 package com.sun.xxm.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sun.xxm.dto.LoginDto;
+import com.sun.xxm.mapper.UserMapper;
 import com.sun.xxm.model.User;
-import com.sun.xxm.service.ITestService;
 import com.sun.xxm.service.IUserService;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
@@ -17,7 +18,10 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @Operation(summary = "通过Id获取测试数据")
+    @Autowired
+    private UserMapper userMapper;
+
+    @Operation(summary = "通过用户名和密码登录")
     @PostMapping("login")
     public boolean Login(@RequestBody LoginDto model) {
         if(model.getUserName().isEmpty() || model.getPassword().isEmpty())
@@ -25,7 +29,10 @@ public class UserController {
             throw new ApiException(ResultCodeEnum.FAILED, "用户名或密码不能为空");
         }
 
-        var user = userService.GetUserInfo(model.getUserName(), model.getPassword());
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_name", model.getUserName());
+        queryWrapper.eq("password", model.getPassword());
+        var list = userMapper.selectOne(queryWrapper);
         return user != null;
     }
 }
