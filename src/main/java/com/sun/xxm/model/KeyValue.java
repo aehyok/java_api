@@ -8,22 +8,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "keyconfig")
-public class KeyConfig {
+@Table(name = "keyvalue")
+public class KeyValue {
     @jakarta.persistence.Id
     @Column(name="id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @TableField(value="code")
-    private String label;
+    @TableField(value="value")
+    private String value;
 
-    @TableField(value="display_order")
-    private int displayOrder;
+    @TableField(value="region_id")
+    private Long regionId;
 
-    @TableField(value="dictionary_code")
-    private String dictionaryCode;
+    @TableField(value="key_config_id")
+    private Long keyValueId;
 
-    @TableField(value="remark")
-    private int remark;
+
 }

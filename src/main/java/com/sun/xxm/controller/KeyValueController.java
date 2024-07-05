@@ -1,6 +1,7 @@
 package com.sun.xxm.controller;
 
 import com.sun.xxm.dto.KeyValueDto;
+import com.sun.xxm.dto.NameValueDto;
 import com.sun.xxm.mapper.KeyValueMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,15 @@ public class KeyValueController {
     private KeyValueMapper keyValueMapper;
 
     @Operation(summary = "根据分类获取数据列表（前端定义好分类code就好）")
-    @GetMapping("{regionId}/{code}")
+    @GetMapping("/get/{regionId}/{code}")
     public List<KeyValueDto> getKeyValues(Long regionId, String code) {
-        return keyValueMapper.getKeyValuesAsync(regionId, code);
+        return keyValueMapper.getKeyValues(regionId, code);
+    }
+
+    @Operation(summary = "根据分类获取数据列表（前端定义好分类code就好）")
+    @GetMapping("/gets/{regionId}/{code}")
+    public List<NameValueDto> GetMiddleKeyValues(Long regionId) {
+        var codes = new String[]{"charts-middle", "charts-left-1"};
+        return keyValueMapper.getKeyValuesByCodes(regionId, codes);
     }
 }

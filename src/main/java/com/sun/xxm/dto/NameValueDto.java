@@ -7,9 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class KeyValueDto {
-    private String label;
+public class NameValueDto {
+    private String name;
+
     private String value;
-    private Integer remark;
-    private Long id;
 }
