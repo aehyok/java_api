@@ -28,8 +28,7 @@ public class BaseControllerAdvice implements ResponseBodyAdvice {
             try {
                 // 将数据包装在ResultModel里后，再转换为json字符串响应给前端
                 return objectMapper.writeValueAsString(new ResultModel<>(body));
-            } catch (JsonProcessingException e)
-            {
+            } catch (JsonProcessingException e) {
                 throw new ApiException(ResultCodeEnum.FAILED);
             }
         }
