@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sun.xxm.dto.LoginDto;
 import com.sun.xxm.mapper.UserMapper;
 import com.sun.xxm.model.User;
-import com.sun.xxm.service.IUserService;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController extends BaseController {
     @Autowired
     private UserMapper userMapper;

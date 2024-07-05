@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dictionary")
+@RequestMapping("/api/dictionary")
 public class DictionaryItemController extends BaseController {
 
     @Autowired

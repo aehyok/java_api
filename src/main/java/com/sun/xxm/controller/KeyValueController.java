@@ -13,7 +13,7 @@ import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.util.List;
 
 @RestController
-@RequestMapping("/keyvalue")
+@RequestMapping("/api/keyvalue")
 public class KeyValueController {
 
     @Autowired
