@@ -13,4 +13,15 @@ public class LoginDto {
 
     @Schema(name = "password", description = "用户密码")
     private String password;
+
+    /// <summary>
+    /// 验证码
+    /// </summary>
+    @Schema(name = "captcha", description = "验证码")
+    private String captcha;
+
+    /// <summary>
+    /// 验证码 Key
+    /// </summary>
+    private String captchaKey;
 }

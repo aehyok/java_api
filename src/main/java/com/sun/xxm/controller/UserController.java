@@ -1,5 +1,7 @@
 package com.sun.xxm.controller;
 
+import cn.hutool.cache.CacheUtil;
+import cn.hutool.cache.impl.TimedCache;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.ShearCaptcha;
 import cn.hutool.core.util.IdUtil;
@@ -27,6 +29,7 @@ public class UserController extends BaseController {
     @Autowired
     private UserMapper userMapper;
 
+    TimedCache<String, String> timedCache = CacheUtil.newTimedCache(1000 * 60 * 10);
 
     @Operation(summary = "通过用户名和密码登录", parameters = {
             @Parameter( name = "loginDto", description = "登录实体")
@@ -36,6 +39,16 @@ public class UserController extends BaseController {
         if(model.getUserName().isEmpty() || model.getPassword().isEmpty())
         {
             throw new ApiException(ResultCodeEnum.FAILED, "用户名或密码不能为空");
+        }
+
+        if(model.getCaptchaKey().isEmpty()) {
+            throw  new ApiException(ResultCodeEnum.FAILED, "请传入验证码key");
+        }
+
+        String captcha = timedCache.get(model.getCaptchaKey(), false);
+
+        if(model.getCaptcha().toLowerCase() != captcha) {
+            throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
         }
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -60,6 +73,8 @@ public class UserController extends BaseController {
         String  uuid = IdUtil.simpleUUID();
         dto.setKey(uuid);
         dto.setExpireTime(LocalDateTime.now());
+
+        timedCache.put(uuid, captcha.getCode().toLowerCase());
         return dto;
     }
 
