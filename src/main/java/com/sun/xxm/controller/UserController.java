@@ -47,7 +47,7 @@ public class UserController extends BaseController {
 
         String captcha = timedCache.get(model.getCaptchaKey(), false);
 
-        if(model.getCaptcha().toLowerCase() != captcha) {
+        if(!model.getCaptcha().toLowerCase().equals(captcha)) {
             throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
         }
 
