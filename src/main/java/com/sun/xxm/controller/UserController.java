@@ -3,19 +3,19 @@ package com.sun.xxm.controller;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.ShearCaptcha;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sun.xxm.dto.CaptchaDto;
 import com.sun.xxm.dto.LoginDto;
 import com.sun.xxm.mapper.UserMapper;
 import com.sun.xxm.model.User;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
-import com.sun.xxm.utils.ValidateCode;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.image.BufferedImage;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Tag(name="user", description = "用户管理")
@@ -49,9 +49,14 @@ public class UserController extends BaseController {
 
     @Operation(summary = "生成验证码")
     @GetMapping("captcha")
-    public String GetCaptcha() {
+    public CaptchaDto GetCaptcha() {
         ShearCaptcha captcha = CaptchaUtil.createShearCaptcha(150, 40, 4, 4);
-        return "data:image/jpeg;base64,"+captcha.getImageBase64();
+        var dto = new CaptchaDto();
+
+        dto.setCaptcha("data:image/jpeg;base64,"+captcha.getImageBase64());
+        dto.setKey("image");
+        dto.setExpireTime(LocalDateTime.now());
+        return dto;
     }
 
 }
