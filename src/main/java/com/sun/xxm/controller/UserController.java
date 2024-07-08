@@ -2,6 +2,7 @@ package com.sun.xxm.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.ShearCaptcha;
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sun.xxm.dto.CaptchaDto;
 import com.sun.xxm.dto.LoginDto;
@@ -12,6 +13,7 @@ import com.sun.xxm.utils.ResultCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.hibernate.id.GUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,7 +56,9 @@ public class UserController extends BaseController {
         var dto = new CaptchaDto();
 
         dto.setCaptcha("data:image/jpeg;base64,"+captcha.getImageBase64());
-        dto.setKey("image");
+
+        String  uuid = IdUtil.simpleUUID();
+        dto.setKey(uuid);
         dto.setExpireTime(LocalDateTime.now());
         return dto;
     }
