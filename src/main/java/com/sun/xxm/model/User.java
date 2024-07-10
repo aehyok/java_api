@@ -29,4 +29,16 @@ public class User {
 
     @TableField(value="password")
     private String password;
+
+    private String nickName;
+
+    private String phone;
+
+    private String email;
+
+    private Integer sex;
+
+    private Integer status;
+
+    private String remark;
 }
