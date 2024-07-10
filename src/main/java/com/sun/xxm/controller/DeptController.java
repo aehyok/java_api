@@ -1,6 +1,8 @@
 package com.sun.xxm.controller;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.sun.xxm.dto.DeptPageQueryDto;
 import com.sun.xxm.mapper.DeptMapper;
 import com.sun.xxm.model.Article;
 import com.sun.xxm.model.Dept;
@@ -22,7 +24,7 @@ public class DeptController {
 
     @Operation(summary = "部门列表")
     @GetMapping("")
-    public List<Dept> getDeptList() {
+    public List<Dept> getDeptList(DeptPageQueryDto model) {
         QueryWrapper<Dept> queryWrapper = new QueryWrapper<>();
         return deptMapper.selectList(queryWrapper);
     }
@@ -38,18 +40,21 @@ public class DeptController {
     @Operation(summary = "新增部门")
     @PostMapping()
     public void postDept(@RequestBody Dept model) {
+        model.setCreateTime(DateTime.now());
         deptMapper.insert(model);
     }
 
     @Operation(summary = "修改部门")
-    @PostMapping("{id}")
+    @PutMapping("{id}")
     public boolean putDept(@PathVariable Long id, @RequestBody Dept model) {
         QueryWrapper<Dept> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", id);
 
         var item = deptMapper.selectOne(queryWrapper);
+        model.setId(id);
+
         if(item != null) {
-            deptMapper.updateById(model);
+            deptMapper.update(model,queryWrapper);
             return true;
         }
         else {
