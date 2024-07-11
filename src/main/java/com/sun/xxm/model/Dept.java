@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.Date;
@@ -17,10 +19,10 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@TableName(value="dept")
+@Table(value="dept")
 public class Dept {
-    @Id
-    @TableId(type = IdType.AUTO)
+    @jakarta.persistence.Id
+    @Id(keyType = KeyType.Auto)
     private Long id;
 
     @TableField(value="name")

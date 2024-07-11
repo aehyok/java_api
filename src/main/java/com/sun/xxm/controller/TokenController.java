@@ -6,7 +6,8 @@ import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.ShearCaptcha;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.jwt.JWTUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mybatisflex.core.query.QueryCondition;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.CaptchaDto;
 import com.sun.xxm.dto.LoginDto;
 import com.sun.xxm.dto.TokenDto;
@@ -54,9 +55,9 @@ public class TokenController extends BaseController {
             throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
         }
 
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_name", model.getUserName());
-        var item = userMapper.selectOne(queryWrapper);
+        Map<String, Object> condition = Map.of("user_name", model.getUserName());
+
+        var item = userMapper.selectOneByMap(condition);
         if (item != null) {
             if (Objects.equals(item.getPassword(), model.getPassword())) {
 
