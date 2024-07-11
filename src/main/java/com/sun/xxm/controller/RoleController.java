@@ -17,7 +17,7 @@ import java.util.List;
 
 @Tag(name="role", description = "角色管理")
 @RestController
-@RequestMapping("/api/role")
+@RequestMapping("/apis/role")
 public class RoleController {
     @Autowired
     private RoleMapper roleMapper;

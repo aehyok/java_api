@@ -30,15 +30,24 @@ public class User {
     @TableField(value="password")
     private String password;
 
+    @TableField(value="nick_name")
     private String nickName;
 
+    @TableField(value="phone")
     private String phone;
 
+    @TableField(value="email")
     private String email;
 
+    @TableField(value="sex")
     private Integer sex;
 
+    @TableField(value="status")
     private Integer status;
 
+    @TableField(value="remark")
     private String remark;
+
+    @TableField(value="dept_id")
+    private Long deptId;
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name="article", description = "文章管理")
 @RestController
-@RequestMapping("/api/article")
+@RequestMapping("/apis/article")
 public class ArticleController {
 
     @Autowired

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Tag(name="region", description = "区域管理")
 @RestController
-@RequestMapping("/api/region")
+@RequestMapping("/apis/region")
 public class RegionController extends BaseController {
 
     @Autowired

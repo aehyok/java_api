@@ -16,7 +16,7 @@ import java.util.List;
 
 @Tag(name="menu", description = "菜单管理")
 @RestController
-@RequestMapping("/api/menu")
+@RequestMapping("/apis/menu")
 public class MenuController {
     @Autowired
     private MenuMapper menuMapper;
