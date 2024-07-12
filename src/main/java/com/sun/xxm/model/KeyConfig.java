@@ -1,6 +1,6 @@
 package com.sun.xxm.model;
 
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.mybatisflex.annotation.KeyType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,19 +11,14 @@ import lombok.Setter;
 @Table(name = "keyconfig")
 public class KeyConfig {
     @jakarta.persistence.Id
-    @Column(name="id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
     private long id;
 
-    @TableField(value="code")
     private String label;
 
-    @TableField(value="display_order")
     private int displayOrder;
 
-    @TableField(value="dictionary_code")
     private String dictionaryCode;
 
-    @TableField(value="remark")
     private int remark;
 }

@@ -1,9 +1,7 @@
 package com.sun.xxm.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -15,31 +13,24 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@TableName(value="geovalue")
+@Table(value="geovalue")
 public class GeoValue {
-    @Id
-    @TableId(type = IdType.AUTO)
+    @jakarta.persistence.Id
+    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
     private Long id;
 
-    @TableField(value="code")
     private String code;
 
-    @TableField(value="name")
     private String name;
 
-    @TableField(value="display_order")
     private int displayOrder;
 
-    @TableField(value="parent_id")
     private Long parentId;
 
-    @TableField(value="big_picture")
     private String bigPicture;
 
-    @TableField(value="small_picture")
     private String smallPicture;
 
-    @TableField(value="is_deleted")
     private boolean isDeleted;
 
 //    @TableField(exist = false)

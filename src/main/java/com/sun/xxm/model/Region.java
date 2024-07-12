@@ -1,9 +1,7 @@
 package com.sun.xxm.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,21 +14,17 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@TableName(value="region")
+@Table(value="region")
 public class Region {
-    @Id
-    @TableId(type = IdType.AUTO)
+    @jakarta.persistence.Id
+    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
     private Long id;
 
-    @TableField(value = "name")
     private String name;
 
-    @TableField(value = "display_order")
     private Integer displayOrder;
 
-    @TableField(value = "is_deleted")
     private Boolean isDeleted;
 
-    @TableField(value = "center_point")
     private String centerPoint;
 }

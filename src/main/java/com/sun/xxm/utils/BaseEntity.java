@@ -1,9 +1,7 @@
 package com.sun.xxm.utils;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.mybatisflex.annotation.KeyType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 @Data
@@ -13,7 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 public class BaseEntity {
-    @Id
-    @TableId(type = IdType.AUTO)
+    @jakarta.persistence.Id
+    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
     private Long id;
 }

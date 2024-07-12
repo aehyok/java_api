@@ -1,10 +1,9 @@
 package com.sun.xxm.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 @Data
@@ -14,10 +13,10 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@TableName(value="file")
+@Table(value="file")
 public class File {
-    @Id
-    @TableId(type = IdType.AUTO)
+    @jakarta.persistence.Id
+    @Id(keyType = KeyType.Auto)
     private Long id;
 
     private String name;

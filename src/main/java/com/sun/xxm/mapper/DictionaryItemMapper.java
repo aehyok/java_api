@@ -1,6 +1,6 @@
 package com.sun.xxm.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mybatisflex.core.BaseMapper;
 import com.sun.xxm.model.DictionaryItem;
 import org.apache.ibatis.annotations.Mapper;
 

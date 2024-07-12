@@ -1,6 +1,6 @@
 package com.sun.xxm.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.mapper.RegionMapper;
 import com.sun.xxm.model.Region;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,10 +23,10 @@ public class RegionController extends BaseController {
     @Operation(summary = "区域列表(包含切换的中心经纬度)")
     @GetMapping("/list")
     public List<Region> getRegions() {
-        QueryWrapper<Region> queryWrapper = new QueryWrapper<>();
+        QueryWrapper queryWrapper = QueryWrapper.create().select();
         queryWrapper.eq("is_deleted", 0);
-        queryWrapper.orderByAsc("display_order");
+        queryWrapper.orderBy("display_order");
 
-        return regionMapper.selectList(queryWrapper);
+        return regionMapper.selectListByQuery(queryWrapper);
     }
 }

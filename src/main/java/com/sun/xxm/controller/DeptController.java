@@ -22,7 +22,7 @@ public class DeptController {
     private DeptMapper deptMapper;
 
     @Operation(summary = "部门列表")
-    @GetMapping("")
+    @GetMapping()
     public List<Dept> getDeptList() {
         return deptMapper.selectAll();
     }

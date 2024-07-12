@@ -1,7 +1,6 @@
 package com.sun.xxm.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.Query;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.mapper.ArticleMapper;
 import com.sun.xxm.mapper.DictionaryItemMapper;
 import com.sun.xxm.model.Article;
@@ -26,9 +25,9 @@ public class ArticleController {
     @Operation(summary = "通过字典项code获取文章内容")
     @GetMapping("{code}")
     public Article getArticles(String code) {
-        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("dictionary_code", code);
-        return articleMapper.selectOne(queryWrapper);
+        QueryWrapper query = QueryWrapper.create().select().ge("code", code);
+
+        return articleMapper.selectOneByQuery(query);
     }
 
     @Operation(summary = "新增文章")
@@ -39,9 +38,8 @@ public class ArticleController {
             throw new ApiException(ResultCodeEnum.FAILED, "请传入字典项");
         }
 
-        QueryWrapper<DictionaryItem> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("dictionary_code", article.getDictionaryCode());
-        var item = dictionaryItemMapper.selectOne(queryWrapper);
+        QueryWrapper query = QueryWrapper.create().select().ge("dictionary_code", article.getDictionaryCode());
+        var item = dictionaryItemMapper.selectOneByQuery(query);
         if(item == null){
             throw new ApiException(ResultCodeEnum.FAILED, "请传入正确的字典项");
         }
@@ -58,20 +56,17 @@ public class ArticleController {
             throw new ApiException(ResultCodeEnum.FAILED, "请传入字典项");
         }
 
-        QueryWrapper<DictionaryItem> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("dictionary_code", article.getDictionaryCode());
-        var item = dictionaryItemMapper.selectOne(queryWrapper);
+        QueryWrapper query = QueryWrapper.create().select().ge("dictionary_code", article.getDictionaryCode());
+        var item = dictionaryItemMapper.selectOneByQuery(query);
         if(item == null){
             throw new ApiException(ResultCodeEnum.FAILED, "请传入正确的字典项");
         }
 
-        QueryWrapper<Article> articleQueryWrapper = new QueryWrapper<>();
-        articleQueryWrapper.eq("id", article.getId());
-        var selectArticle  = articleMapper.selectOne(articleQueryWrapper);
+        var selectArticle = articleMapper.selectOneById(article.getId());
         selectArticle.setContent(article.getContent());
         selectArticle.setTitle(article.getTitle());
 
-        articleMapper.update(article,articleQueryWrapper);
+        articleMapper.update(article);
         return article;
     }
 }

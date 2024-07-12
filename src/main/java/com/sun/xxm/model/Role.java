@@ -1,12 +1,13 @@
 package com.sun.xxm.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
+import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
+
+import java.util.Date;
 
 @Data
 @Builder
@@ -15,21 +16,21 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@TableName(value="role")
-public class Role {
-    @Id
-    @TableId(type = IdType.AUTO)
-    private Long id;
+@Table(value="role")
+public class Role extends BaseEntity {
+//    @jakarta.persistence.Id
+//    @Id(keyType = KeyType.Auto)
+//    private Long id;
 
-    @TableField(value="name")
     private String name;
 
-    @TableField(value="code")
     private String code;
 
-    @TableField(value="remark")
     private String remark;
 
-    @TableField(value="status")
     private Integer status;
+
+    private Date createTime;
+
+    private Date updateTime;
 }

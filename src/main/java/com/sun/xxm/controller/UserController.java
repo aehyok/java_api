@@ -44,8 +44,7 @@ public class UserController {
             queryWrapper.like("phone", model.getPhone());
         }
 
-        if(model.getStatus() > 0)
-        {
+        if(model.getStatus() > 0) {
             queryWrapper.eq("status", model.getStatus());
         }
 

@@ -1,9 +1,7 @@
 package com.sun.xxm.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.sun.xxm.dto.DeptPageQueryDto;
 import com.sun.xxm.mapper.MenuMapper;
-import com.sun.xxm.model.Dept;
 import com.sun.xxm.model.Menu;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +22,6 @@ public class MenuController {
     @Operation(summary = "菜单列表")
     @GetMapping()
     public List<Menu> getList(DeptPageQueryDto model) {
-        QueryWrapper<Menu> queryWrapper = new QueryWrapper<>();
-        return menuMapper.selectList(queryWrapper);
+        return menuMapper.selectAll();
     }
 }

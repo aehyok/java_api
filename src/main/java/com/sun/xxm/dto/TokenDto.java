@@ -3,8 +3,6 @@ package com.sun.xxm.dto;
 import cn.hutool.core.date.DateTime;
 import lombok.Getter;
 import lombok.Setter;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
-
 @Getter
 @Setter
 public class TokenDto {

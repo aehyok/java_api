@@ -1,10 +1,8 @@
 package com.sun.xxm.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 @Data
@@ -14,10 +12,10 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@TableName(value="article")
+@Table(value="article")
 public class Article {
-    @Id
-    @TableId(type = IdType.AUTO)
+    @jakarta.persistence.Id
+    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
     private Long id;
 
     private String title;

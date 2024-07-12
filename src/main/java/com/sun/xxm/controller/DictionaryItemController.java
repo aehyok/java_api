@@ -1,6 +1,6 @@
 package com.sun.xxm.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.DictionaryItemDto;
 import com.sun.xxm.dtoMapper.DictionaryItemEntityToDtoMapper;
 import com.sun.xxm.mapper.DictionaryItemMapper;
@@ -29,21 +29,20 @@ public class DictionaryItemController extends BaseController {
     @GetMapping()
     public List<DictionaryItem> getList()
     {
-        QueryWrapper<DictionaryItem> queryWrapper = new QueryWrapper<>();
+        QueryWrapper queryWrapper = QueryWrapper.create().select();
         queryWrapper.eq("is_deleted", 0);
-        queryWrapper.orderByAsc("parent_id", "display_order");
-
-        return dictionaryItemMapper.selectList(queryWrapper);
+        queryWrapper.orderBy("parent_id", "display_order");
+        return dictionaryItemMapper.selectListByQuery(queryWrapper);
     }
 
     @Operation(summary = "根据Code获取下级项目字典列表")
     @GetMapping("{code}")
     public List<DictionaryItemDto> getList(String code) {
-        QueryWrapper<DictionaryItem> queryWrapper = new QueryWrapper<>();
+        QueryWrapper queryWrapper = QueryWrapper.create().select();
         queryWrapper.eq("is_deleted", 0);
         queryWrapper.eq("code", code);
-        var item =  dictionaryItemMapper.selectOne(queryWrapper);
 
+        var item = dictionaryItemMapper.selectOneByQuery(queryWrapper);
         if(item == null) {
             throw new ApiException(ResultCodeEnum.EMPTY);
         }
@@ -51,9 +50,9 @@ public class DictionaryItemController extends BaseController {
             queryWrapper.clear();
             queryWrapper.eq("is_deleted", 0);
             queryWrapper.eq("parent_id", item.getId());
-            queryWrapper.orderByAsc("display_order");
+            queryWrapper.orderBy("display_order");
 
-            var parentList =  dictionaryItemMapper.selectList(queryWrapper);
+            var parentList =  dictionaryItemMapper.selectListByQuery (queryWrapper);
 
             var dtoList = DictionaryItemEntityToDtoMapper.instance.toDtos(parentList);
 
@@ -62,9 +61,9 @@ public class DictionaryItemController extends BaseController {
                 queryWrapper.clear();
                 queryWrapper.eq("is_deleted", 0);
                 queryWrapper.eq("parent_id", child.getId());
-                queryWrapper.orderByAsc("display_order");
+                queryWrapper.orderBy("display_order");
 
-                var childList =  dictionaryItemMapper.selectList(queryWrapper);
+                var childList =  dictionaryItemMapper.selectListByQuery(queryWrapper);
 
                 var dtoChildList = DictionaryItemEntityToDtoMapper.instance.toDtos(childList);
                 child.setChildren(dtoChildList);
