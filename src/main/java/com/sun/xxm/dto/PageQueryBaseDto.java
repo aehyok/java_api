@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class PageQueryBaseDto {
 
-    private long pageNumber = 1;
+    private long page = 1;
 
-    private long pageSize = 15;
+    private long limit = 15;
 
     private String keyword = "";
 }

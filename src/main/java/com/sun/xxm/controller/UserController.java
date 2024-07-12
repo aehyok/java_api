@@ -48,6 +48,6 @@ public class UserController {
             queryWrapper.eq("status", model.getStatus());
         }
 
-        return userMapper.paginate(model.getPageNumber(), model.getPageSize(), queryWrapper);
+        return userMapper.paginate(model.getPage(), model.getLimit(), queryWrapper);
     }
 }

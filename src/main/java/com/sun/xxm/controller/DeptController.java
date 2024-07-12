@@ -1,7 +1,10 @@
 package com.sun.xxm.controller;
 
 import cn.hutool.core.date.DateTime;
+import com.sun.xxm.dto.CreateDeptDto;
 import com.sun.xxm.dto.DeptPageQueryDto;
+import com.sun.xxm.dtoMapper.DeptDtoToEntityMapper;
+import com.sun.xxm.dtoMapper.DictionaryItemEntityToDtoMapper;
 import com.sun.xxm.mapper.DeptMapper;
 import com.sun.xxm.model.Dept;
 import com.sun.xxm.utils.ApiException;
@@ -43,12 +46,13 @@ public class DeptController {
 
     @Operation(summary = "修改部门")
     @PutMapping("{id}")
-    public boolean putDept(@PathVariable Long id, @RequestBody Dept model) {
+    public boolean putDept(@PathVariable Long id, @RequestBody CreateDeptDto model) {
         var item = deptMapper.selectOneById(id);
 
         if(item != null) {
-            model.setId(id);
-            deptMapper.update(model);
+            var entity = DeptDtoToEntityMapper.instance.toEntity(model);
+            entity.setId(id);
+            deptMapper.update(entity);
             return true;
         }
         else {

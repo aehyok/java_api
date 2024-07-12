@@ -42,7 +42,7 @@ public class RoleController {
             queryWrapper.eq("status", model.getStatus());
         }
 
-        return roleMapper.paginate(model.getPageNumber(), model.getPageSize(),queryWrapper);
+        return roleMapper.paginate(model.getPage(), model.getLimit(),queryWrapper);
     }
 
     @Operation(summary = "删除角色")

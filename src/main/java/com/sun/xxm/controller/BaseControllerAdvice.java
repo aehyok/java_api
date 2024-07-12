@@ -2,7 +2,9 @@ package com.sun.xxm.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mybatisflex.core.paginate.Page;
 import com.sun.xxm.utils.ApiException;
+import com.sun.xxm.utils.PageResultModel;
 import com.sun.xxm.utils.ResultCodeEnum;
 import com.sun.xxm.utils.ResultModel;
 import org.springframework.core.MethodParameter;
@@ -44,6 +46,17 @@ public class BaseControllerAdvice implements ResponseBodyAdvice<Object> {
         if(body instanceof ResultModel){
             return body;
         }
+        if(body instanceof Page) {
+            var result = new PageResultModel();
+            result.setCode(ResultCodeEnum.SUCCESS.getCode());
+            result.setData(((Page<?>) body).getRecords());
+            result.setPage(((Page<?>) body).getPageNumber());
+            result.setTotal(((Page<?>) body).getTotalRow());
+            result.setTotalPage(((Page<?>) body).getTotalPage());
+            result.setLimit(((Page<?>) body).getPageSize());
+            return result;
+        }
+
         return new ResultModel<>(body);
     }
 
