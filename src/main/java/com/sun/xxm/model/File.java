@@ -14,6 +14,7 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = false)
 @Table(value="file")
 public class File extends BaseEntity {
 //    @jakarta.persistence.Id
