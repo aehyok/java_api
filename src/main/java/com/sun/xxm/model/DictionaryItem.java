@@ -4,6 +4,7 @@ import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
 import com.mybatisflex.annotation.KeyType;
+import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.*;
 
@@ -17,10 +18,10 @@ import java.util.List;
 @Getter
 @Setter
 @Table(value="dictionaryitem")
-public class DictionaryItem {
-    @jakarta.persistence.Id
-    @Id(keyType = KeyType.Auto)
-    private Long id;
+public class DictionaryItem extends BaseEntity {
+//    @jakarta.persistence.Id
+//    @Id(keyType = KeyType.Auto)
+//    private Long id;
 
     private String code;
 

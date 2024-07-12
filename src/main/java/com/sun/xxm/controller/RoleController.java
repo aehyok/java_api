@@ -38,7 +38,7 @@ public class RoleController {
             queryWrapper.like("code", model.getCode());
         }
 
-        if(model.getStatus() > 0) {
+        if( model.getStatus() != null && model.getStatus() > 0) {
             queryWrapper.eq("status", model.getStatus());
         }
 

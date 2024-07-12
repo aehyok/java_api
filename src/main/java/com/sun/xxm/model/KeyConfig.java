@@ -1,6 +1,7 @@
 package com.sun.xxm.model;
 
 import com.mybatisflex.annotation.KeyType;
+import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "keyconfig")
-public class KeyConfig {
-    @jakarta.persistence.Id
-    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-    private long id;
+public class KeyConfig extends BaseEntity {
+//    @jakarta.persistence.Id
+//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
+//    private long id;
 
     private String label;
 

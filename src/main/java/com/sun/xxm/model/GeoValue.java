@@ -2,6 +2,7 @@ package com.sun.xxm.model;
 
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -14,10 +15,10 @@ import lombok.*;
 @Getter
 @Setter
 @Table(value="geovalue")
-public class GeoValue {
-    @jakarta.persistence.Id
-    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-    private Long id;
+public class GeoValue extends BaseEntity {
+//    @jakarta.persistence.Id
+//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
+//    private Long id;
 
     private String code;
 

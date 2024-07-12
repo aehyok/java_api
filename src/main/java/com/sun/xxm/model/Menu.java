@@ -1,6 +1,7 @@
 package com.sun.xxm.model;
 
 import com.mybatisflex.annotation.Table;
+import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -13,9 +14,9 @@ import lombok.*;
 @Getter
 @Setter
 @Table(value="menu")
-public class Menu {
-    @Id
-    private Long id;
+public class Menu extends BaseEntity {
+//    @Id
+//    private Long id;
 
     // 菜单类型
     private Integer menuType;

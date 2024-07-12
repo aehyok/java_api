@@ -2,6 +2,7 @@ package com.sun.xxm.model;
 
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,11 +16,11 @@ import lombok.*;
 @Getter
 @Setter
 @Table(value="user")
-public class User {
+public class User extends BaseEntity {
     //自增Id
-    @jakarta.persistence.Id
-    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-    private Long id;
+//    @jakarta.persistence.Id
+//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
+//    private Long id;
 
     private String userName;
 
