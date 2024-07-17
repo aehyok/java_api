@@ -17,6 +17,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Tag(name="role", description = "角色管理")
 @RestController
@@ -24,6 +26,13 @@ import org.springframework.web.bind.annotation.*;
 public class RoleController {
     @Autowired
     private RoleMapper roleMapper;
+
+    @Operation(summary = "所有角色列表")
+    @GetMapping("all")
+    public List<Role> getList() {
+
+        return roleMapper.selectAll();
+    }
 
     @Operation(summary = "角色列表")
     @GetMapping()
