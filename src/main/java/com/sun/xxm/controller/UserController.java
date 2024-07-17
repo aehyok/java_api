@@ -1,19 +1,19 @@
 package com.sun.xxm.controller;
 
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.StrUtil;
 import com.mybatisflex.core.paginate.Page;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.UserPageQueryDto;
 import com.sun.xxm.mapper.UserMapper;
+import com.sun.xxm.model.Role;
 import com.sun.xxm.model.User;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,5 +50,35 @@ public class UserController {
         }
 
         return userMapper.paginate(model.getPage(), model.getLimit(), queryWrapper);
+    }
+
+    @Operation(summary = "删除用户")
+    @DeleteMapping("{id}")
+    public void deleteRole(@PathVariable Long id) {
+        userMapper.deleteById(id);
+    }
+
+    @Operation(summary = "新增角色")
+    @PostMapping()
+    public long postRole(@RequestBody User model) {
+        model.setCreateTime(DateTime.now());
+        var result = userMapper.insert(model);
+        return model.getId();
+    }
+
+    @Operation(summary = "修改角色")
+    @PutMapping("{id}")
+    public boolean putRole(@PathVariable Long id, @RequestBody  User model) {
+        var item = userMapper.selectOneById(id);
+
+        if(item != null) {
+            model.setId(id);
+            model.setUpdateTime(DateTime.now());
+            userMapper.update(model);
+            return true;
+        }
+        else {
+            throw new ApiException(ResultCodeEnum.FAILED, "当前用户不存在");
+        }
     }
 }

@@ -6,6 +6,8 @@ import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 // @Builder // https://juejin.cn/post/7357957809071702050?searchId=20240704094536F54B142E45E0124F3D26#heading-9
 //注解可以自动生成Builder模式的代码，Builder模式是一种创建对象的设计模式
 @Data
@@ -39,4 +41,8 @@ public class User extends BaseEntity {
     private String remark;
 
     private Long deptId;
+
+    private Date createTime;
+
+    private Date updateTime;
 }
