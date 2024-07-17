@@ -1,5 +1,6 @@
 package com.sun.xxm.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.mybatisflex.core.paginate.Page;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.UserPageQueryDto;
@@ -35,16 +36,16 @@ public class UserController {
             throw new ApiException(ResultCodeEnum.FAILED, "部门参数不能为空");
         }
 
-        if(model.getNickName() != null)
+        if(!StrUtil.hasEmpty(model.getNickName()))
         {
             queryWrapper.like("nick_name", model.getNickName());
         }
-        if(model.getPhone()!= null)
+        if(!StrUtil.hasEmpty(model.getPhone()))
         {
             queryWrapper.like("phone", model.getPhone());
         }
 
-        if(model.getStatus() > 0) {
+        if(model.getStatus() != null && model.getStatus() > 0) {
             queryWrapper.eq("status", model.getStatus());
         }
 

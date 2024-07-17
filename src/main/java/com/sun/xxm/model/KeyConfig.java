@@ -1,15 +1,18 @@
 package com.sun.xxm.model;
 
-import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
-@Table(name = "keyconfig")
+@Table(value="keyconfig")
 public class KeyConfig extends BaseEntity {
 //    @jakarta.persistence.Id
 //    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
