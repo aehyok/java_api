@@ -13,11 +13,8 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="article")
+@Table("article")
 public class Article extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-//    private Long id;
 
     private String title;
 

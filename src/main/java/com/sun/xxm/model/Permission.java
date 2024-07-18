@@ -14,8 +14,9 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(value="permission")
+@Table("permission")
 public class Permission extends BaseEntity {
+
     private Long roleId;
 
     private Long menuId;

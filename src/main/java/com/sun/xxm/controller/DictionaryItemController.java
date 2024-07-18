@@ -2,8 +2,8 @@ package com.sun.xxm.controller;
 
 import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.DictionaryItemDto;
-import com.sun.xxm.dtoMapper.DictionaryItemEntityToDtoMapper;
-import com.sun.xxm.mapper.DictionaryItemMapper;
+import com.sun.xxm.mapper.DictionaryItemEntityToDtoMapper;
+import com.sun.xxm.service.DictionaryItemMapper;
 import com.sun.xxm.model.DictionaryItem;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Tag(name="dictionary", description = "字典")
+@Tag(name="dictionaryitem", description = "字典")
 @RestController
-@RequestMapping("/apis/dictionary")
+@RequestMapping("/apis/dictionaryitem")
 public class DictionaryItemController extends BaseController {
 
     @Autowired
@@ -27,11 +26,11 @@ public class DictionaryItemController extends BaseController {
 
     @Operation(summary = "获取所有字典项目")
     @GetMapping()
-    public List<DictionaryItem> getList()
-    {
+    public List<DictionaryItem> getList() {
         QueryWrapper queryWrapper = QueryWrapper.create().select();
         queryWrapper.eq("is_deleted", 0);
-        queryWrapper.orderBy("parent_id", "display_order");
+        queryWrapper.orderBy("parent_id", true);
+        queryWrapper.orderBy("display_order", true);
         return dictionaryItemMapper.selectListByQuery(queryWrapper);
     }
 

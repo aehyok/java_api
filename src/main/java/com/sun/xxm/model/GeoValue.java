@@ -14,11 +14,8 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="geovalue")
+@Table("geo_value")
 public class GeoValue extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-//    private Long id;
 
     private String code;
 

@@ -1,10 +1,8 @@
 package com.sun.xxm.controller;
 
 import com.sun.xxm.dto.CreateMenuDto;
-import com.sun.xxm.dto.DeptPageQueryDto;
-import com.sun.xxm.dtoMapper.DeptDtoToEntityMapper;
-import com.sun.xxm.dtoMapper.MenuDtoToEntityMapper;
-import com.sun.xxm.mapper.MenuMapper;
+import com.sun.xxm.mapper.MenuDtoToEntityMapper;
+import com.sun.xxm.service.MenuMapper;
 import com.sun.xxm.model.Menu;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;

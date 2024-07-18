@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreateMenuDto {
+
     private Integer menuType;
 
     // 父级菜单

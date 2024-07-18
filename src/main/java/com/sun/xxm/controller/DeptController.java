@@ -2,10 +2,8 @@ package com.sun.xxm.controller;
 
 import cn.hutool.core.date.DateTime;
 import com.sun.xxm.dto.CreateDeptDto;
-import com.sun.xxm.dto.DeptPageQueryDto;
-import com.sun.xxm.dtoMapper.DeptDtoToEntityMapper;
-import com.sun.xxm.dtoMapper.DictionaryItemEntityToDtoMapper;
-import com.sun.xxm.mapper.DeptMapper;
+import com.sun.xxm.mapper.DeptDtoToEntityMapper;
+import com.sun.xxm.service.DeptMapper;
 import com.sun.xxm.model.Dept;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Tag(name="dept", description = "部门管理")
 @RestController

@@ -1,8 +1,7 @@
 package com.sun.xxm.controller;
 
-import com.sun.xxm.mapper.FileMapper;
+import com.sun.xxm.service.FileMapper;
 import com.sun.xxm.model.File;
-import com.sun.xxm.model.FileTypeEnum;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.FileUtil;
 import com.sun.xxm.utils.ResultCodeEnum;

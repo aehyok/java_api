@@ -1,10 +1,9 @@
 package com.sun.xxm.controller;
 
 import com.mybatisflex.core.query.QueryWrapper;
-import com.sun.xxm.mapper.ArticleMapper;
-import com.sun.xxm.mapper.DictionaryItemMapper;
+import com.sun.xxm.service.ArticleMapper;
+import com.sun.xxm.service.DictionaryItemMapper;
 import com.sun.xxm.model.Article;
-import com.sun.xxm.model.DictionaryItem;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;

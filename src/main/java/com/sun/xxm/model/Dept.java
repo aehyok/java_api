@@ -16,11 +16,8 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(value="dept")
+@Table("dept")
 public class Dept extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @Id(keyType = KeyType.Auto)
-//    private Long id;
 
     private String name;
 

@@ -15,11 +15,8 @@ import lombok.*;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-@Table(value="file")
+@Table("file")
 public class File extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @Id(keyType = KeyType.Auto)
-//    private Long id;
 
     private String name;
 

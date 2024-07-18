@@ -12,11 +12,8 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="keyconfig")
+@Table("key_config")
 public class KeyConfig extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-//    private long id;
 
     private String label;
 

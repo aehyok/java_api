@@ -1,14 +1,9 @@
 package com.sun.xxm.model;
 
-import com.mybatisflex.annotation.Id;
-import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
-import com.mybatisflex.annotation.KeyType;
 import com.sun.xxm.utils.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @Builder
@@ -17,26 +12,24 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(value="dictionaryitem")
+@Table(value="dictionary_item")
 public class DictionaryItem extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @Id(keyType = KeyType.Auto)
-//    private Long id;
-
-    private String code;
 
     private String name;
 
-    private int displayOrder;
+    private String code;
+
+    private Integer order;
 
     private Long parentId;
 
-    private String bigPicture;
+    private Long dictionaryGroupId;
 
-    private String smallPicture;
+    private boolean isEnable;
 
-    private boolean isDeleted;
+    private String remark;
 
-//    @TableField(exist = false)
-//    private List<DictionaryItem> children;
+    private boolean isVisible;
+
+    private String picture;
 }

@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(value="user")
+@Table("user")
 public class User extends BaseEntity {
     private String userName;
 

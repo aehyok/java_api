@@ -13,11 +13,8 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="menu")
+@Table("menu")
 public class Menu extends BaseEntity {
-//    @Id
-//    private Long id;
-
     // 菜单类型
     private Integer menuType;
 

@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Data
 public class CreateDeptDto {
+
     private String name;
 
     private int sort;

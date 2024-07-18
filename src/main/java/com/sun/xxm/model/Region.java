@@ -14,11 +14,8 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="region")
+@Table("region")
 public class Region extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-//    private Long id;
 
     private String name;
 

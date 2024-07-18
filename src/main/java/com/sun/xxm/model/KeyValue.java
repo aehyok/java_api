@@ -13,17 +13,12 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="keyvalue")
+@Table("key_value")
 public class KeyValue extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @com.mybatisflex.annotation.Id(keyType = KeyType.Auto)
-//    private long id;
 
     private String value;
 
     private Long regionId;
 
     private Long keyValueId;
-
-
 }

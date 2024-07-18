@@ -15,11 +15,8 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(value="role")
+@Table("role")
 public class Role extends BaseEntity {
-//    @jakarta.persistence.Id
-//    @Id(keyType = KeyType.Auto)
-//    private Long id;
 
     private String name;
 

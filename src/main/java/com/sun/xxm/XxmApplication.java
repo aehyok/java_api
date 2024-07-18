@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@MapperScan(value = "com.sun.xxm.mapper")
+@MapperScan(value = "com.sun.xxm.service")
 public class XxmApplication {
 
 	public static void main(String[] args) {

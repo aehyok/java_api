@@ -1,7 +1,7 @@
 package com.sun.xxm.controller;
 
 import com.mybatisflex.core.query.QueryWrapper;
-import com.sun.xxm.mapper.RegionMapper;
+import com.sun.xxm.service.RegionMapper;
 import com.sun.xxm.model.Region;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

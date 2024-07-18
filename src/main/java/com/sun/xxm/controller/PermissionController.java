@@ -2,8 +2,7 @@ package com.sun.xxm.controller;
 
 import cn.hutool.core.date.DateTime;
 import com.mybatisflex.core.query.QueryWrapper;
-import com.sun.xxm.mapper.PermissionMapper;
-import com.sun.xxm.model.Menu;
+import com.sun.xxm.service.PermissionMapper;
 import com.sun.xxm.model.Permission;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;

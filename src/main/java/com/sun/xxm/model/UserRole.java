@@ -15,7 +15,7 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(value="userrole")
+@Table("user_role")
 public class UserRole extends BaseEntity {
     private  Long userId;
     private  Long roleId;

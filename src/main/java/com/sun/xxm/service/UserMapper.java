@@ -1,4 +1,4 @@
-package com.sun.xxm.mapper;
+package com.sun.xxm.service;
 
 
 import com.mybatisflex.core.BaseMapper;

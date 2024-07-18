@@ -1,4 +1,4 @@
-package com.sun.xxm.dtoMapper;
+package com.sun.xxm.mapper;
 
 import com.sun.xxm.dto.DictionaryItemDto;
 import com.sun.xxm.model.DictionaryItem;
