@@ -8,6 +8,7 @@ import com.sun.xxm.model.Dept;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class DeptController {
     @Autowired
     private DeptMapper deptMapper;
 
-    @Operation(summary = "部门列表")
+    @Operation(summary = "部门列表", security = @SecurityRequirement(name = "openApiSecurityScheme"))
     @GetMapping()
     public List<Dept> getDeptList() {
         return deptMapper.selectAll();

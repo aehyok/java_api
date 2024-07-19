@@ -25,10 +25,18 @@ public class TokenValidationInterceptor implements HandlerInterceptor {
                 return true; // 跳过 token 验证
             }
         }
-//
-//        String token = request.getHeader("Authorization");
-//        // 执行正常的 token 验证逻辑
-//        var obj = JWTUtil.parseToken(token);
+
+        String token = request.getHeader("Authorization");
+
+        if (token == null) {
+            throw new ApiException(ResultCodeEnum.Unauthorized);
+        }
+
+        if(token.startsWith("Bearer")){
+            token = token.substring(7);
+        }
+        // 执行正常的 token 验证逻辑
+        var obj = JWTUtil.parseToken(token);
 //
 //        throw new ApiException(ResultCodeEnum.Unauthorized);
         return true;
