@@ -12,6 +12,7 @@ import com.sun.xxm.dto.TokenDto;
 import com.sun.xxm.service.UserMapper;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
+import com.sun.xxm.utils.authentication.AllowAnonymous;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,6 +36,7 @@ public class TokenController extends BaseController {
     @Operation(summary = "通过用户名和密码登录", parameters = {
             @Parameter( name = "loginDto", description = "登录实体")
     })
+    @AllowAnonymous
     @PostMapping("login")
     public TokenDto Login(@RequestBody LoginDto model) {
         if(model.getUserName().isEmpty() || model.getPassword().isEmpty())
@@ -77,6 +79,7 @@ public class TokenController extends BaseController {
         throw new ApiException(ResultCodeEnum.FAILED, "用户名或密码错误");
     }
 
+    @AllowAnonymous
     @Operation(summary = "生成验证码")
     @GetMapping("captcha")
     public CaptchaDto GetCaptcha() {

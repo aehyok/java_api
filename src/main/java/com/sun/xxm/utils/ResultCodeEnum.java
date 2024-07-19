@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum ResultCodeEnum {
     SUCCESS(200, "请求处理成功"),
     EMPTY(405, "数据不存在"),
+    Unauthorized(401, "请先登录"),
     FAILED(-1, "接口错误"),
     SERVER_ERROR(500, "服务器出现问题，请稍后重试")
     ;
