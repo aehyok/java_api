@@ -37,6 +37,8 @@ public class TokenValidationInterceptor implements HandlerInterceptor {
         }
         // 执行正常的 token 验证逻辑
         var obj = JWTUtil.parseToken(token);
+
+
 //
 //        throw new ApiException(ResultCodeEnum.Unauthorized);
         return true;
