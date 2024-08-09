@@ -54,6 +54,7 @@ public class BaseControllerAdvice implements ResponseBodyAdvice<Object> {
             result.setTotal(((Page<?>) body).getTotalRow());
             result.setTotalPage(((Page<?>) body).getTotalPage());
             result.setLimit(((Page<?>) body).getPageSize());
+            result.setMessage("success");
             return result;
         }
 
