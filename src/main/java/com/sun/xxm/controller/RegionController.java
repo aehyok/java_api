@@ -1,8 +1,10 @@
 package com.sun.xxm.controller;
 
 import com.mybatisflex.core.query.QueryWrapper;
+import com.sun.xxm.redis.RedisService;
 import com.sun.xxm.service.RegionMapper;
 import com.sun.xxm.model.Region;
+import com.sun.xxm.utils.authentication.AllowAnonymous;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,12 @@ import java.util.List;
 @RequestMapping("/apis/region")
 public class RegionController extends BaseController {
 
+//    @Autowired
+//    private RedisTemplate<String, Object> redisTemplate;
+
+    @Autowired
+    private RedisService redisUtil;
+
     @Autowired
     private RegionMapper regionMapper;
 
@@ -28,5 +36,21 @@ public class RegionController extends BaseController {
         queryWrapper.orderBy("display_order");
 
         return regionMapper.selectListByQuery(queryWrapper);
+    }
+
+    @AllowAnonymous
+    @Operation(summary = "redis set")
+    @GetMapping("/set")
+    public void Set(String key, String value) {
+//        redisTemplate.opsForValue().set(key, value);
+        redisUtil.set(key, value);
+    }
+
+    @AllowAnonymous
+    @Operation(summary = "redis get")
+    @GetMapping("/get")
+    public String Get(String key) {
+//        return (String)redisTemplate.opsForValue().get(key);
+        return redisUtil.get(key);
     }
 }

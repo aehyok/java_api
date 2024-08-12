@@ -94,6 +94,17 @@
 		</dependency>
 		<!--swagger-->
 
+		<!--redis-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>5.1.4</version>
+		</dependency>
 		<!--automapper-->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
