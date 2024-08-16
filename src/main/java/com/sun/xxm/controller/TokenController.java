@@ -9,6 +9,7 @@ import cn.hutool.jwt.JWTUtil;
 import com.sun.xxm.dto.CaptchaDto;
 import com.sun.xxm.dto.LoginDto;
 import com.sun.xxm.dto.TokenDto;
+import com.sun.xxm.redis.RedisService;
 import com.sun.xxm.service.UserMapper;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
@@ -17,6 +18,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -31,7 +33,13 @@ public class TokenController extends BaseController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RedisService redisUtil;
+
     TimedCache<String, String> timedCache = CacheUtil.newTimedCache(1000 * 60 * 10);
+    @Qualifier("redisService")
+    @Autowired
+    private RedisService redisService;
 
     @Operation(summary = "通过用户名和密码登录", parameters = {
             @Parameter( name = "loginDto", description = "登录实体")
@@ -39,6 +47,7 @@ public class TokenController extends BaseController {
     @AllowAnonymous
     @PostMapping("login")
     public TokenDto Login(@RequestBody LoginDto model) {
+
         if(model.getUserName().isEmpty() || model.getPassword().isEmpty())
         {
             throw new ApiException(ResultCodeEnum.FAILED, "用户名或密码不能为空");
@@ -48,7 +57,9 @@ public class TokenController extends BaseController {
             throw  new ApiException(ResultCodeEnum.FAILED, "请传入验证码key");
         }
 
-        String captcha = timedCache.get(model.getCaptchaKey(), false);
+//        String captcha = timedCache.get(model.getCaptchaKey(), false);
+        var captcha = redisService.get("Captcha:" + model.getCaptchaKey());
+
 
         if(!model.getCaptcha().toLowerCase().equals(captcha)) {
             throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
@@ -92,7 +103,10 @@ public class TokenController extends BaseController {
         dto.setKey(uuid);
         dto.setExpireTime(LocalDateTime.now());
 
-        timedCache.put(uuid, captcha.getCode().toLowerCase());
+//        timedCache.put(uuid, captcha.getCode().toLowerCase());
+
+        //过期时间设置为10分钟
+        redisUtil.set("Captcha:"+ uuid, captcha.getCode().toLowerCase(), 10*60 );
         return dto;
     }
 }

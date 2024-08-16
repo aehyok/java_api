@@ -18,12 +18,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/apis/region")
 public class RegionController extends BaseController {
-
-//    @Autowired
-//    private RedisTemplate<String, Object> redisTemplate;
-
     @Autowired
-    private RedisService redisUtil;
+    private RedisService redisService;
 
     @Autowired
     private RegionMapper regionMapper;
@@ -42,15 +38,13 @@ public class RegionController extends BaseController {
     @Operation(summary = "redis set")
     @GetMapping("/set")
     public void Set(String key, String value) {
-//        redisTemplate.opsForValue().set(key, value);
-        redisUtil.set(key, value);
+        redisService.set(key, value);
     }
 
     @AllowAnonymous
     @Operation(summary = "redis get")
     @GetMapping("/get")
     public String Get(String key) {
-//        return (String)redisTemplate.opsForValue().get(key);
-        return redisUtil.get(key);
+        return redisService.get(key);
     }
 }
