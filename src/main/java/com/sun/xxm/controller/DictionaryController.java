@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.DictionaryItemDto;
 import com.sun.xxm.dto.dictionary.*;
-import com.sun.xxm.mapper.DictionaryConvertMapper;
+import com.sun.xxm.mapper.DictionaryGroupEntityToDtoMapper;
 import com.sun.xxm.service.DictionaryGroupMapper;
 import com.sun.xxm.service.DictionaryItemMapper;
 import com.sun.xxm.model.DictionaryItem;
@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Tag(name="dictionary", description = "字典")
@@ -42,21 +43,28 @@ public class DictionaryController {
         }
 
         var list = this.dictionaryGroupMapper.selectAll();
-        return DictionaryConvertMapper.INSTANCE.toGroupDtos(list);
 
+//        var result = new ArrayList<DictionaryGroupDto>();
+//        list.forEach((item -> {
+//            var dto = DictionaryGroupEntityToDtoMapper.INSTANCE.toGroupDto(item);
+//            result.add(dto);
+//        }));
+//        return result;
+        var dtoList = DictionaryGroupEntityToDtoMapper.INSTANCE.toGroupDtos(list);
+        return dtoList;
     }
 
     @Operation( summary = "获取分组详情")
     @GetMapping("group/{id}")
     public DictionaryGroupDto GetGroupById(@PathVariable Long id) {
         var item = this.dictionaryGroupMapper.selectOneById(id);
-        return DictionaryConvertMapper.INSTANCE.toGroupDto(item);
+        return DictionaryGroupEntityToDtoMapper.INSTANCE.toGroupDto(item);
     }
 
     @Operation(summary = "添加字典分组")
     @PostMapping("group")
     public void PostGroup(@RequestBody CreateDictionaryGroupDto model) {
-        var entity = DictionaryConvertMapper.INSTANCE.createGroupToEntity(model);
+        var entity = DictionaryGroupEntityToDtoMapper.INSTANCE.createGroupToEntity(model);
         this.dictionaryGroupMapper.insert(entity);
     }
 
@@ -70,7 +78,7 @@ public class DictionaryController {
 
         model.setCode(entity.getCode());
 
-        entity = DictionaryConvertMapper.INSTANCE.createGroupToEntity(model);
+        entity = DictionaryGroupEntityToDtoMapper.INSTANCE.createGroupToEntity(model);
 
         this.dictionaryGroupMapper.update(entity);
     }
@@ -105,20 +113,20 @@ public class DictionaryController {
         QueryWrapper queryWrapper = QueryWrapper.create().select();
         queryWrapper.eq("dictionary_group_id", model.getDictionaryGroupId());
         var list = this.dictionaryItemMapper.selectListByQuery(queryWrapper);
-        return DictionaryConvertMapper.INSTANCE.toItemDtos(list);
+        return DictionaryGroupEntityToDtoMapper.INSTANCE.toItemDtos(list);
     }
 
     @Operation(summary = "获取字典项详情")
     @GetMapping("{id}")
     public DictionaryItemDto GetItemById(@PathVariable Long id) {
         var item = this.dictionaryItemMapper.selectOneById(id);
-        return DictionaryConvertMapper.INSTANCE.toItemDto(item);
+        return DictionaryGroupEntityToDtoMapper.INSTANCE.toItemDto(item);
     }
 
     @Operation( summary = "添加字典项")
     @PostMapping()
     public void PostItem(@RequestBody CreateDictionaryItemDto model) {
-        var entity = DictionaryConvertMapper.INSTANCE.createItemToEntity(model);
+        var entity = DictionaryGroupEntityToDtoMapper.INSTANCE.createItemToEntity(model);
         if(model.getDictionaryGroupId() <= 0) {
             var group = this.dictionaryGroupMapper.selectOneById(model.getDictionaryGroupCode());
             if( group == null) {
@@ -147,7 +155,7 @@ public class DictionaryController {
             model.setDictionaryGroupId(group.getId());
         }
 
-        entity = DictionaryConvertMapper.INSTANCE.createItemToEntity(model);
+        entity = DictionaryGroupEntityToDtoMapper.INSTANCE.createItemToEntity(model);
 
         this.dictionaryItemMapper.update(entity);
     }

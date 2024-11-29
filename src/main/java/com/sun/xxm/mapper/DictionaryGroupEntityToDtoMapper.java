@@ -6,12 +6,15 @@ import com.sun.xxm.dto.dictionary.CreateDictionaryItemDto;
 import com.sun.xxm.dto.dictionary.DictionaryGroupDto;
 import com.sun.xxm.model.DictionaryGroup;
 import com.sun.xxm.model.DictionaryItem;
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-public interface DictionaryConvertMapper {
-    public DictionaryConvertMapper INSTANCE = Mappers.getMapper(DictionaryConvertMapper.class);
+@Mapper
+public interface DictionaryGroupEntityToDtoMapper {
+
+    DictionaryGroupEntityToDtoMapper INSTANCE = Mappers.getMapper(DictionaryGroupEntityToDtoMapper.class);
 
     List<DictionaryGroupDto> toGroupDtos (List<DictionaryGroup> model);
 

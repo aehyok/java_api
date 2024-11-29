@@ -57,9 +57,7 @@ public class TokenController extends BaseController {
             throw  new ApiException(ResultCodeEnum.FAILED, "请传入验证码key");
         }
 
-//        String captcha = timedCache.get(model.getCaptchaKey(), false);
         var captcha = redisService.get("Captcha:" + model.getCaptchaKey());
-
 
         if(!model.getCaptcha().toLowerCase().equals(captcha)) {
             throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
