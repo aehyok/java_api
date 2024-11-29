@@ -11,6 +11,9 @@ import com.sun.xxm.model.DictionaryItem;
 import com.sun.xxm.utils.ApiException;
 import com.sun.xxm.utils.ResultCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +35,14 @@ public class DictionaryController {
         this.dictionaryItemMapper = dictionaryItemMapper;
     }
 
-    @Operation( summary = "获取字典分组")
+    @Operation( summary = "获取字典分组列表")
     @GetMapping("group")
-    public List<DictionaryGroupDto> GetGroup(QueryDictionaryGroupDto model) {
+    public List<DictionaryGroupDto> GetGroup(
+            @Parameter(
+                    description = "字典分组查询参数",
+                    required = false
+            )
+            QueryDictionaryGroupDto model) {
         QueryWrapper queryWrapper = QueryWrapper.create().select();
         queryWrapper.orderBy("order", true);
 
@@ -54,9 +62,11 @@ public class DictionaryController {
         return dtoList;
     }
 
-    @Operation( summary = "获取分组详情")
+    @Operation( summary = "通过分组Id获取分组详情")
     @GetMapping("group/{id}")
-    public DictionaryGroupDto GetGroupById(@PathVariable Long id) {
+    public DictionaryGroupDto GetGroupById(
+            @Parameter( name= "id", description = "字典分组Id")
+            @PathVariable Long id) {
         var item = this.dictionaryGroupMapper.selectOneById(id);
         return DictionaryGroupEntityToDtoMapper.INSTANCE.toGroupDto(item);
     }

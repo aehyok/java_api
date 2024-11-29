@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class PageQueryBaseDto {
 
-    private long page;
+    private long page = 1;
 
-    private long limit;
+    private long limit = 10;
 
     private String keyword = "";
 
@@ -23,7 +23,7 @@ public class PageQueryBaseDto {
 
     public void setLimit(long limit) {
         if (limit <= 0) {
-            this.limit = 15; // Default to 15 if limit is 0 or less
+            this.limit = 10; // Default to 15 if limit is 0 or less
         } else {
             this.limit = limit;
         }

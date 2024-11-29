@@ -8,6 +8,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.jwt.JWTUtil;
 import com.sun.xxm.dto.CaptchaDto;
 import com.sun.xxm.dto.LoginDto;
+import com.sun.xxm.dto.LoginType;
 import com.sun.xxm.dto.TokenDto;
 import com.sun.xxm.redis.RedisService;
 import com.sun.xxm.service.UserMapper;
@@ -57,10 +58,12 @@ public class TokenController extends BaseController {
             throw  new ApiException(ResultCodeEnum.FAILED, "请传入验证码key");
         }
 
-        var captcha = redisService.get("Captcha:" + model.getCaptchaKey());
+        if(model.getLoginType() == LoginType.Normal) {
+            var captcha = redisService.get("Captcha:" + model.getCaptchaKey());
 
-        if(!model.getCaptcha().toLowerCase().equals(captcha)) {
-            throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
+            if(!model.getCaptchaValue().toLowerCase().equals(captcha)) {
+                throw  new ApiException(ResultCodeEnum.FAILED, "验证码错误");
+            }
         }
 
         Map<String, Object> condition = Map.of("user_name", model.getUserName());

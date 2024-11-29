@@ -17,11 +17,14 @@ public class LoginDto {
     /// <summary>
     /// 验证码
     /// </summary>
-    @Schema(name = "captcha", description = "验证码")
-    private String captcha;
+    @Schema(name = "captchaValue", description = "验证码")
+    private String captchaValue;
 
     /// <summary>
     /// 验证码 Key
     /// </summary>
+    @Schema(name = "captchaKey", description = "验证码Key")
     private String captchaKey;
+
+    private LoginType loginType = LoginType.Normal;
 }
