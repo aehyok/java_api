@@ -17,7 +17,7 @@ import java.util.List;
 
 @Tag(name="dept", description = "部门管理")
 @RestController
-@RequestMapping("/apis/dept")
+@RequestMapping("/api/dept")
 public class DeptController {
     @Autowired
     private DeptMapper deptMapper;

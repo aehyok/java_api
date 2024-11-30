@@ -14,7 +14,7 @@ import java.util.List;
 
 @Tag(name="keyvalue", description = "键值对管理")
 @RestController
-@RequestMapping("/apis/keyvalue")
+@RequestMapping("/api/keyvalue")
 public class KeyValueController {
 
     @Autowired

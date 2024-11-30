@@ -17,7 +17,7 @@ import java.io.IOException;
 
 @Tag(name="file", description = "文件")
 @RestController
-@RequestMapping("/apis/file")
+@RequestMapping("/api/file")
 public class FileController {
 
     @Value("${file.upload-dir}")

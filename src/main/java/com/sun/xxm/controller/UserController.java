@@ -22,7 +22,7 @@ import java.util.List;
 
 @Tag(name="user", description = "用户管理")
 @RestController
-@RequestMapping("/apis/user")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserMapper userMapper;

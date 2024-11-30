@@ -18,7 +18,7 @@ import java.util.List;
 
 @Tag(name="dictionaryitem", description = "字典")
 @RestController
-@RequestMapping("/apis/dictionaryitem")
+@RequestMapping("/api/dictionaryitem")
 public class DictionaryItemController extends BaseController {
 
     @Autowired

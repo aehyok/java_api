@@ -22,7 +22,7 @@ import java.util.List;
 
 @Tag(name="dictionary", description = "字典")
 @RestController
-@RequestMapping("/apis/dictionary")
+@RequestMapping("/api/dictionary")
 public class DictionaryController {
 
     private final DictionaryGroupMapper dictionaryGroupMapper;

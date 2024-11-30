@@ -16,7 +16,7 @@ import java.util.List;
 
 @Tag(name="region", description = "区域管理")
 @RestController
-@RequestMapping("/apis/region")
+@RequestMapping("/api/region")
 public class RegionController extends BaseController {
     @Autowired
     private RedisService redisService;

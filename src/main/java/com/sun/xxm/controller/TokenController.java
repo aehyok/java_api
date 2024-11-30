@@ -29,7 +29,7 @@ import java.util.Objects;
 
 @Tag(name="token", description = "Token管理")
 @RestController
-@RequestMapping("/apis/token")
+@RequestMapping("/api/token")
 public class TokenController extends BaseController {
     @Autowired
     private UserMapper userMapper;

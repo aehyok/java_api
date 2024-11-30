@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Tag(name="permission", description = "权限管理")
 @RestController
-@RequestMapping("/apis/permission")
+@RequestMapping("/api/permission")
 public class PermissionController {
     @Autowired
     private PermissionMapper permissionMapper;
