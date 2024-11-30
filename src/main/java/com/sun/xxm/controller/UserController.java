@@ -61,24 +61,28 @@ public class UserController {
     @Operation(summary = "删除用户")
     @DeleteMapping("{id}")
     public void deleteRole(@PathVariable Long id) {
+        var result = userMapper.selectOneById(id);
+        if(result == null) {
+            throw new ApiException(ResultCodeEnum.FAILED, "删除用户不存在");
+        }
         userMapper.deleteById(id);
     }
 
-    @Operation(summary = "新增角色")
+    @Operation(summary = "新增用户")
     @PostMapping()
     public long postRole(@RequestBody User model) {
         model.setCreateTime(DateTime.now());
-        var result = userMapper.insert(model);
+        userMapper.insert(model);
         return model.getId();
     }
 
-    @Operation(summary = "修改角色")
+    @Operation(summary = "修改用户")
     @PutMapping("{id}")
-    public boolean putRole(@PathVariable Long id, @RequestBody  User model) {
-        var item = userMapper.selectOneById(id);
+    public boolean putRole(@PathVariable Long userId, @RequestBody  User model) {
+        var item = userMapper.selectOneById(userId);
 
         if(item != null) {
-            model.setId(id);
+            model.setId(userId);
             model.setUpdateTime(DateTime.now());
             userMapper.update(model);
             return true;
@@ -92,17 +96,16 @@ public class UserController {
     @GetMapping("/role/{userId}")
     public List<UserRole> postUserRole(@PathVariable Long userId) {
         QueryWrapper queryWrapper = QueryWrapper.create().select();
-        queryWrapper.eq("user_id", userId);
+        queryWrapper.eq("id", userId);
         return userRoleMapper.selectListByQuery(queryWrapper);
     }
-
 
     @Operation(summary = "用户角色分配")
     @PostMapping("/role/{userId}")
     @Transactional
     public void postUserRole(@PathVariable Long userId, @RequestBody List<Long> roleIds) {
         QueryWrapper queryWrapper = QueryWrapper.create().select();
-        queryWrapper.eq("user_id", userId);
+        queryWrapper.eq("id", userId);
         userRoleMapper.deleteByQuery(queryWrapper);
 
         var list = new ArrayList<UserRole>();
@@ -113,7 +116,6 @@ public class UserController {
             list.add(ur);
         });
 
-//        throw new ApiException(ResultCodeEnum.FAILED, "事务出错");
         userRoleMapper.insertBatch(list);
     }
 }
