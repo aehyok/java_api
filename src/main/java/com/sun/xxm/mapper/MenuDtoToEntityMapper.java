@@ -10,4 +10,6 @@ public interface MenuDtoToEntityMapper {
     MenuDtoToEntityMapper instance = Mappers.getMapper(MenuDtoToEntityMapper.class);
 
     Menu toEntity (CreateMenuDto model);
+
+
 }

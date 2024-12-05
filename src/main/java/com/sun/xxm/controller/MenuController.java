@@ -1,6 +1,8 @@
 package com.sun.xxm.controller;
 
+import com.mybatisflex.core.query.QueryWrapper;
 import com.sun.xxm.dto.CreateMenuDto;
+import com.sun.xxm.dto.menu.MenuTreeQueryDto;
 import com.sun.xxm.mapper.MenuDtoToEntityMapper;
 import com.sun.xxm.service.MenuMapper;
 import com.sun.xxm.model.Menu;
@@ -23,6 +25,25 @@ public class MenuController {
     @Operation(summary = "菜单列表")
     @GetMapping()
     public List<Menu> getList() {
+        return menuMapper.selectAll();
+    }
+
+    @Operation(summary = "菜单列表")
+    @GetMapping("tree")
+    public List<Menu> getTreeList(MenuTreeQueryDto model) {
+
+        if (!model.getParentCode().isEmpty()) {
+            QueryWrapper queryWrapper = QueryWrapper.create()
+                    .where(Menu::getCode).eq(model.getParentCode())
+                    .orderBy(Menu:: getRank).asc();
+
+            var parent = menuMapper.selectOneByQuery(queryWrapper);
+            if (parent == null) {
+                throw new ApiException(ResultCodeEnum.FAILED, "未找到code：【"+ model.getParentCode() +"】 对应的菜单");
+            }
+            model.setParentId(parent.getParentId());
+        }
+
         return menuMapper.selectAll();
     }
 

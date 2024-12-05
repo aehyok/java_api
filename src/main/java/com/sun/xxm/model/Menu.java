@@ -15,6 +15,9 @@ import lombok.*;
 @Setter
 @Table("menu")
 public class Menu extends BaseEntity {
+
+    //菜单唯一Code
+    private String Code;
     // 菜单类型
     private Integer menuType;
 
